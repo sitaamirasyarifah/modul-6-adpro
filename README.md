@@ -36,3 +36,14 @@ Certainly, here's a breakdown of the process into step-by-step instructions:
      - Serve the contents of the notfound.html file.
 
 ![Commit 3 screen capture](commit3.png)
+
+
+**Commit 4**
+
+I have updated the handle_connection function to manage various HTTP GET requests based on the request line.
+
+When the request line reads "GET / HTTP/1.1" precisely, it signifies that the client is seeking the root directory of the server. In response, I set the HTTP status line to "HTTP/1.1 200 OK," denoting a successful request, and select "hello.html" as the file to be returned. This behavior is customary for serving a homepage or the primary entry point of a website.
+
+If the request line corresponds to "GET /sleep HTTP/1.1," I interpret it as an instruction to simulate a delay before responding. I accomplish this by pausing execution for 10 seconds, utilizing Rust's thread::sleep(Duration::from_secs(10)). This functionality can be utilized to assess the client's handling of delayed server responses. Upon completion of the delay, the server proceeds to respond with "HTTP/1.1 200 OK" and serves the same "hello.html" file. This scenario illustrates the implementation of artificial delays for specific endpoints.
+
+For any other request lines that deviate from the aforementioned patterns, the server defaults to responding with "HTTP/1.1 404 NOT FOUND" and serves a "notfound.html" file. This case is employed to address unknown or unhandled requests, informing the client that the requested resource could not be found on the server.
