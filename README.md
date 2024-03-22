@@ -11,5 +11,28 @@ Modifying the `handle_connection` function to display a basic HTML page provided
 
 **Commit 3**
 
-I included a new HTML file called oops.html to serve as the 404 Not Found page. Subsequently, I adjusted the handle_connection function within our HTTP server. This updated function scrutinizes the initial line of the client's HTTP request to verify whether it's a GET/HTTP/1.1 request, indicating a request for the root path (/). If this condition is met, it replies with the status line HTTP/1.1 200 OK and delivers the content of the hello.html file. Conversely, if it detects otherwise, it issues a HTTP/1.1 404 NOT FOUND status line and delivers the content of the notfound.html file.
+Certainly, here's a breakdown of the process into step-by-step instructions:
+
+1. **Add a New HTML File:**
+   - Create a new HTML file named "notfound.html" to serve as the 404 Not Found page.
+
+2. **Update the HTTP Server Function:**
+   - Modify the handle_connection function within your HTTP server.
+
+3. **Inspect Request Type:**
+   - Within the handle_connection function, examine the initial line of the client's HTTP request.
+
+4. **Check Request Type:**
+   - Verify whether the request is a GET/HTTP/1.1 request, indicating a request for the root path (/).
+
+5. **Handle Request Type:**
+   - If the request is a GET/HTTP/1.1 request:
+     - Respond with the status line HTTP/1.1 200 OK.
+     - Serve the contents of the hello.html file.
+
+6. **Handle Other Request Types:**
+   - If the request is not a GET/HTTP/1.1 request:
+     - Issue a HTTP/1.1 404 NOT FOUND status line.
+     - Serve the contents of the notfound.html file.
+
 ![Commit 3 screen capture](commit3.png)
