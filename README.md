@@ -47,3 +47,23 @@ When the request line reads "GET / HTTP/1.1" precisely, it signifies that the cl
 If the request line corresponds to "GET /sleep HTTP/1.1," I interpret it as an instruction to simulate a delay before responding. I accomplish this by pausing execution for 10 seconds, utilizing Rust's thread::sleep(Duration::from_secs(10)). This functionality can be utilized to assess the client's handling of delayed server responses. Upon completion of the delay, the server proceeds to respond with "HTTP/1.1 200 OK" and serves the same "hello.html" file. This scenario illustrates the implementation of artificial delays for specific endpoints.
 
 For any other request lines that deviate from the aforementioned patterns, the server defaults to responding with "HTTP/1.1 404 NOT FOUND" and serves a "notfound.html" file. This case is employed to address unknown or unhandled requests, informing the client that the requested resource could not be found on the server.
+
+
+**Commit 5**
+
+How the ThreadPool works :
+- Initialization:
+  - When the server starts, it establishes a ThreadPool containing a fixed number of worker threads.
+  - These threads are initialized and ready to handle tasks immediately upon creation.
+
+- Incoming Connections:
+  - As clients connect to the server, the main thread accepts the TCP connections.
+  - For each connection, the main thread assigns a task (the handle_connection function) to the ThreadPool.
+
+- Task Execution:
+  - Worker threads within the ThreadPool retrieve tasks from the queue.
+  - Each worker thread processes its assigned task, which typically involves managing a TCP connection, handling the HTTP request, generating the response, and sending it back to the client.
+
+- Concurrency:
+  - Through the ThreadPool mechanism, the server can concurrently handle multiple connections, up to the predetermined number of threads in the pool.
+  - This concurrency capability enhances the server's responsiveness and scalability compared to single-threaded or new-thread-per-request models.
