@@ -67,3 +67,8 @@ How the ThreadPool works :
 - Concurrency:
   - Through the ThreadPool mechanism, the server can concurrently handle multiple connections, up to the predetermined number of threads in the pool.
   - This concurrency capability enhances the server's responsiveness and scalability compared to single-threaded or new-thread-per-request models.
+
+
+**Bonus Function improvement**
+
+The utilization of build instead of new can be regarded as safer in terms of error handling since the program will return an error if the provided quantity is less than or equal to 0.
